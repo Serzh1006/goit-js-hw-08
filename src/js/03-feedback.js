@@ -36,10 +36,10 @@ refs.form.addEventListener(
 // Submit Form
 
 function onClickSubForm(e) {
+  e.preventDefault();
   if (refs.emailEl.value === '' || refs.messageEl.value === '') {
     alert('Заполните все поля');
   } else {
-    e.preventDefault();
     const objForm = {};
     new FormData(e.currentTarget).forEach((value, index) => {
       objForm[index] = value;
