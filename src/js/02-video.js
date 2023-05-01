@@ -14,7 +14,7 @@ player.getVideoTitle().then(function (title) {
   console.log('title:', title);
 });
 
-const actualTime = load(LOCALE__KEY);
+const actualTime = load(LOCALE__KEY) || 0;
 
 player
   .setCurrentTime(actualTime)
