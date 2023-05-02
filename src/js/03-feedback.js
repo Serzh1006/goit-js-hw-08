@@ -8,7 +8,10 @@ const refs = {
   messageEl: document.querySelector('[name = "message"]'),
 };
 
-const dataUser = {};
+let dataUser = {
+  email: '',
+  message: '',
+};
 
 refs.form.addEventListener('submit', onClickSubForm);
 
@@ -28,8 +31,14 @@ getDataFromStorage();
 refs.form.addEventListener(
   'input',
   throttle(e => {
-    dataUser[e.target.name] = e.target.value;
-    save(LOCALE__KEY, dataUser);
+    const isHasData = load(LOCALE__KEY);
+    if (isHasData !== undefined) {
+      isHasData[e.target.name] = e.target.value;
+      save(LOCALE__KEY, isHasData);
+    } else {
+      dataUser[e.target.name] = e.target.value;
+      save(LOCALE__KEY, dataUser);
+    }
   }, 500)
 );
 
