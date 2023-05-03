@@ -33,10 +33,10 @@ refs.form.addEventListener(
   throttle(e => {
     const isHasData = load(LOCALE__KEY);
     if (isHasData !== undefined) {
-      isHasData[e.target.name] = e.target.value;
+      isHasData[e.target.name] = e.target.value.trim();
       save(LOCALE__KEY, isHasData);
     } else {
-      dataUser[e.target.name] = e.target.value;
+      dataUser[e.target.name] = e.target.value.trim();
       save(LOCALE__KEY, dataUser);
     }
   }, 500)
@@ -46,12 +46,12 @@ refs.form.addEventListener(
 
 function onClickSubForm(e) {
   e.preventDefault();
-  if (refs.emailEl.value === '' || refs.messageEl.value === '') {
+  if (refs.emailEl.value.trim() === '' || refs.messageEl.value.trim() === '') {
     alert('Заполните все поля');
   } else {
     const objForm = {};
     new FormData(e.currentTarget).forEach((value, index) => {
-      objForm[index] = value;
+      objForm[index] = value.trim();
     });
     console.log(objForm);
     localStorage.removeItem(LOCALE__KEY);
